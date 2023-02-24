@@ -37,5 +37,22 @@
 !_TAG_ROLE_DESCRIPTION!C++!header	local	/local header/
 !_TAG_ROLE_DESCRIPTION!C++!header	system	/system header/
 !_TAG_ROLE_DESCRIPTION!C++!macro	undef	/undefined/
+Add	Contact.cpp	/^void	Contact::Add(void){$/;"	f	class:Contact	typeref:typename:void
+Add	PhoneBook.cpp	/^void	PhoneBook::Add(void){$/;"	f	class:PhoneBook	typeref:typename:void
+CONTACT_HPP	Contact.hpp	/^# define CONTACT_HPP$/;"	d
+Contact	Contact.cpp	/^Contact::Contact(){$/;"	f	class:Contact
+Contact	Contact.hpp	/^class Contact$/;"	c
+PHONEBOOK_HPP	PhoneBook.hpp	/^# define PHONEBOOK_HPP$/;"	d
+PhoneBook	PhoneBook.cpp	/^PhoneBook::PhoneBook(void){$/;"	f	class:PhoneBook
 PhoneBook	PhoneBook.hpp	/^class PhoneBook$/;"	c
-contacts	PhoneBook.hpp	/^		std::string contacts[8];$/;"	m	class:PhoneBook	typeref:typename:std::string[8]
+PrintContactList	Contact.cpp	/^void	Contact::PrintContactList(int index){$/;"	f	class:Contact	typeref:typename:void
+Search	PhoneBook.cpp	/^void PhoneBook::Search(void){$/;"	f	class:PhoneBook	typeref:typename:void
+_firstName	Contact.hpp	/^		std::string	_firstName;$/;"	m	class:Contact	typeref:typename:std::string
+_lastName	Contact.hpp	/^		std::string	_lastName;$/;"	m	class:Contact	typeref:typename:std::string
+_nickname	Contact.hpp	/^		std::string	_nickname;$/;"	m	class:Contact	typeref:typename:std::string
+_number	Contact.hpp	/^		std::string	_number;$/;"	m	class:Contact	typeref:typename:std::string
+_secret	Contact.hpp	/^		std::string	_secret;$/;"	m	class:Contact	typeref:typename:std::string
+contacts	PhoneBook.hpp	/^		Contact contacts[8];$/;"	m	class:PhoneBook	typeref:typename:Contact[8]
+main	main.cpp	/^int	main(void)$/;"	f	typeref:typename:int
+~Contact	Contact.cpp	/^Contact::~Contact(){$/;"	f	class:Contact
+~PhoneBook	PhoneBook.cpp	/^PhoneBook::~PhoneBook(void){$/;"	f	class:PhoneBook

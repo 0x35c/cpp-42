@@ -6,14 +6,14 @@
 #    By: ulayus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 10:28:52 by ulayus            #+#    #+#              #
-#    Updated: 2023/02/23 16:04:21 by ulayus           ###   ########.fr        #
+#    Updated: 2023/02/24 18:48:50 by ulayus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= phonebook
 SRCS	= main.cpp PhoneBook.cpp Contact.cpp
 CC 		= c++
-CFLAGS  = -Wall -Wextra -Werror -std=c++98
+CFLAGS  = -g -Wall -Wextra -Werror -std=c++98
 OBJS    = $(SRCS:.cpp=.o)
 
 all: $(NAME)
