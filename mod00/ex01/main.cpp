@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:26:18 by ulayus            #+#    #+#             */
-/*   Updated: 2023/02/24 18:53:42 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/02/25 12:34:00 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ int	main(void)
 	PhoneBook	phonebook;
 	std::string	command;
 
-	while (1)
+	while (std::getline(std::cin, command) && command != "EXIT")
 	{
-		std::getline(std::cin, command);
-		if (command.empty() || command == "EXIT")
+		if (command.empty())
 			std::exit(0);
 		else if (command == "ADD")
 			phonebook.Add();

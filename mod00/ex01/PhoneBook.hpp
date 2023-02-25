@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:17:42 by ulayus            #+#    #+#             */
-/*   Updated: 2023/02/24 15:18:29 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/02/25 12:30:18 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class PhoneBook
 
 	private:
 		Contact contacts[8];
+		int		_currentContact;
 };
 
 #endif
