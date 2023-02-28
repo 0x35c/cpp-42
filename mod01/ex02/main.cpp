@@ -6,25 +6,25 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:25:05 by ulayus            #+#    #+#             */
-/*   Updated: 2023/02/27 09:52:55 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/02/27 10:01:15 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
+#include <string>
 
 int	main(void)
 {
-	Zombie	first_zombie;
-	Zombie	*horde;
+	std::string str = "HI THIS IS BRAIN";
+	std::string *stringPTR = &str;
+	std::string	&stringREF = str;
 
-	first_zombie.setName("ARMAAAAND");
-	first_zombie.announce();
+	std::cout << &str << std::endl;
+	std::cout << stringPTR << std::endl;
+	std::cout << &stringREF << std::endl;
 
-	horde = zombieHorde(4, "TG");
-	for (int i = 0; i < 4; i++){
-		horde[i].announce();
-	}
-
-	delete []horde;
+	std::cout << str << std::endl;
+	std::cout << *stringPTR << std::endl;
+	std::cout << stringREF << std::endl;
 	return (0);
 }

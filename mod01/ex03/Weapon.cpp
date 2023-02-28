@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 16:25:05 by ulayus            #+#    #+#             */
-/*   Updated: 2023/02/27 09:52:55 by ulayus           ###   ########.fr       */
+/*   Created: 2023/02/27 10:47:04 by ulayus            #+#    #+#             */
+/*   Updated: 2023/02/28 15:27:19 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Weapon.hpp"
+#include <iostream>
 
-int	main(void)
-{
-	Zombie	first_zombie;
-	Zombie	*horde;
+Weapon::Weapon(std::string type):_type(type){
+}
 
-	first_zombie.setName("ARMAAAAND");
-	first_zombie.announce();
+Weapon::~Weapon(void){
+}
 
-	horde = zombieHorde(4, "TG");
-	for (int i = 0; i < 4; i++){
-		horde[i].announce();
-	}
+void	Weapon::setType(std::string type){
+	_type = type;
+}
 
-	delete []horde;
-	return (0);
+std::string&	Weapon::getType(void){
+	return (_type);
 }

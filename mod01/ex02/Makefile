@@ -6,12 +6,12 @@
 #    By: ulayus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 10:28:52 by ulayus            #+#    #+#              #
-#    Updated: 2023/02/27 09:56:37 by ulayus           ###   ########.fr        #
+#    Updated: 2023/02/27 09:57:03 by ulayus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= horde
-SRCS	= main.cpp Zombie.cpp zombieHorde.cpp
+NAME	= brain
+SRCS	= main.cpp
 CC 		= c++
 CFLAGS  = -Wall -Wextra -Werror -std=c++98
 OBJS    = $(SRCS:.cpp=.o)
