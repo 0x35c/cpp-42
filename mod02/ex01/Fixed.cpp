@@ -6,13 +6,14 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:14:23 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/02 14:45:36 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/03 14:02:57 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 #include <ostream>
+#include <cmath>
 
 const int	Fixed::_nbFractionnalBits = 8;
 
@@ -20,12 +21,14 @@ Fixed::Fixed(void):_fixedNumber(0){
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int number):_fixedNumber(number){
+Fixed::Fixed(const int number){
 	std::cout << "Int constructor called" << std::endl;
+	_fixedNumber = number * (1 << _nbFractionnalBits); 	
 }
 
-Fixed::Fixed(const float number):_fixedNumber(number){
+Fixed::Fixed(const float number){
 	std::cout << "Float constructor called" << std::endl;
+	_fixedNumber = roundf(number * (1 << _nbFractionnalBits)); 	
 }
 
 Fixed::Fixed(const Fixed& fixed){
@@ -48,9 +51,15 @@ Fixed::~Fixed(void){
 }
 
 int	Fixed::toInt(void) const{
-	return (_fixedNumber);
+	int	number;
+
+	number = _fixedNumber / (1 << _nbFractionnalBits); 	
+	return (number);
 }
 
 float Fixed::toFloat(void) const{
-	return (_fixedNumber);
+	float	number;
+
+	number = (float)_fixedNumber / (1 << _nbFractionnalBits); 	
+	return (number);
 }
