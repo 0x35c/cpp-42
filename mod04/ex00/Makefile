@@ -6,12 +6,12 @@
 #    By: ulayus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 10:28:52 by ulayus            #+#    #+#              #
-#    Updated: 2023/03/09 14:00:55 by ulayus           ###   ########.fr        #
+#    Updated: 2023/03/09 14:20:48 by ulayus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= diamondtrap
-SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
+NAME	= animal
+SRCS	= main.cpp Animal.cpp Dog.cpp Cat.cpp
 CC 		= c++
 CFLAGS  = -g -Wall -Wextra -Werror -std=c++98
 OBJS    = $(SRCS:.cpp=.o)

@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/08 18:47:20 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/09 13:54:53 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ class DiamondTrap : public FragTrap, public ScavTrap
 		DiamondTrap&	operator= (const DiamondTrap& DiamondTrap);
 
 		/* Member functions */
-		void	whoAmI(void);
+		void			whoAmI(void);
+		virtual void	attack(const std::string& target);	
 
 	private:
-		std::string	_name;
+		std::string	_nameDiamond;
+		using		ClapTrap::_name;
 };
 
 #endif

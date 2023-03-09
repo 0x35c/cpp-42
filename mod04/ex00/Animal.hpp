@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/09 13:42:07 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/09 15:17:49 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
-#include "ClapTrap.hpp"
 #include <string>
 
-class FragTrap : virtual public ClapTrap
+class Animal
 {
 	public:
-		FragTrap(void);
-		FragTrap(std::string name);
-		FragTrap(const FragTrap& FragTrap);
-		~FragTrap(void);
+		Animal(void);
+		Animal(std::string type);
+		Animal(const Animal& Animal);
+		~Animal(void);
 
-		FragTrap&	operator= (const FragTrap& FragTrap);
+		Animal&	operator= (const Animal& Animal);
 
-		/* Member functions */
-		void	highFivesGuys(void);
+	protected:
+		std::string	_type;
 };
 
 #endif
