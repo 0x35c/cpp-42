@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/09 15:17:49 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/11 12:24:22 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ class Animal
 {
 	public:
 		Animal(void);
-		Animal(std::string type);
 		Animal(const Animal& Animal);
 		~Animal(void);
 
 		Animal&	operator= (const Animal& Animal);
+
+		/* Member functions */	
+		virtual void		makeSound(void) const;
+		virtual std::string	getType(void) const;
 
 	protected:
 		std::string	_type;

@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/11 12:15:44 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/11 12:22:22 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
-#include "Animal.hpp"
 #include <string>
 
-class Cat : public Animal
+class WrongAnimal
 {
 	public:
-		Cat(void);
-		Cat(const Cat& Cat);
-		~Cat(void);
+		WrongAnimal(void);
+		WrongAnimal(const WrongAnimal& WrongAnimal);
+		~WrongAnimal(void);
 
-		Cat&	operator= (const Cat& Cat);
+		WrongAnimal&	operator= (const WrongAnimal& WrongAnimal);
 
 		/* Member functions */	
 		void		makeSound(void) const;
 		std::string	getType(void) const;
 
-	private:
-		std::string	_typeCat;
-		using		Animal::_type;
+	protected:
+		std::string	_type;
 };
 
 #endif
