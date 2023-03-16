@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 11:50:42 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/15 14:30:18 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/16 10:27:24 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int main()
 {
-	const Animal*	array[LEN_ARRAY];
+	const AAnimal*	array[LEN_ARRAY];
 
 	for (int i = 0; i < LEN_ARRAY; i++){
 		if (i % 2)

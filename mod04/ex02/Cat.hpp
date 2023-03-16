@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/15 14:28:13 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/16 10:27:15 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define CAT_HPP
 
 #include "Brain.hpp"
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include <string>
 
-class Cat : public Animal
+class Cat : public AAnimal
 {
 	public:
 		Cat(void);
@@ -34,7 +34,7 @@ class Cat : public Animal
 
 	private:
 		std::string	_typeCat;
-		using		Animal::_type;
+		using		AAnimal::_type;
 		Brain*		_brain;
 };
 

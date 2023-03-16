@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/16 10:26:38 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/16 10:35:19 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef AANIMAL_HPP
+# define AANIMAL_HPP
 
-#include "Brain.hpp"
-#include "AAnimal.hpp"
 #include <string>
 
-class Dog : public AAnimal
+class AAnimal
 {
 	public:
-		Dog(void);
-		Dog(const Dog& Dog);
-		virtual ~Dog(void);
+		AAnimal(void);
+		AAnimal(const AAnimal& AAnimal);
+		virtual ~AAnimal(void);
 
-		Dog&	operator= (const Dog& Dog);
+		AAnimal&	operator= (const AAnimal& AAnimal);
 
 		/* Member functions */	
-		void			makeSound(void) const;
-		std::string		getType(void) const;
-		std::string		getIdea(int idea_index) const;
-		void			setIdea(int idea_index, std::string ideas);
+		virtual void		makeSound(void) const = 0;
+		virtual std::string	getType(void) const;
 
-	private:
-		std::string	_typeDog;
-		using		AAnimal::_type;
-		Brain*		_brain;
+	protected:
+		std::string	_type;
 };
 
 #endif

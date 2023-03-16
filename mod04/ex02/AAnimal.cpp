@@ -6,36 +6,36 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/11 12:11:26 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/16 10:25:50 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include <iostream>
 
-Animal::Animal(void):_type(){
-	std::cout << "Animal default constructor called" << std::endl;
+AAnimal::AAnimal(void):_type(){
+	std::cout << "AAnimal default constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal& Animal){
-	std::cout << "Animal copy constructor called" << std::endl;
-	_type = Animal._type;
+AAnimal::AAnimal(const AAnimal& AAnimal){
+	std::cout << "AAnimal copy constructor called" << std::endl;
+	_type = AAnimal._type;
 }
 
-Animal&	Animal::operator= (const Animal& Animal){
-	std::cout << "Animal copy assignment operator overload called" << std::endl;
-	_type = Animal._type;
+AAnimal&	AAnimal::operator= (const AAnimal& AAnimal){
+	std::cout << "AAnimal copy assignment operator overload called" << std::endl;
+	_type = AAnimal._type;
 	return (*this);
 }
 
-void	Animal::makeSound(void) const{
+void	AAnimal::makeSound(void) const{
 	std::cout << "Some random animal noise." << std::endl;
 }
 
-std::string	Animal::getType(void) const{
+std::string	AAnimal::getType(void) const{
 	return (_type);
 }
 
-Animal::~Animal(void){
-	std::cout << "Animal destructor called" << std::endl;
+AAnimal::~AAnimal(void){
+	std::cout << "AAnimal destructor called" << std::endl;
 }

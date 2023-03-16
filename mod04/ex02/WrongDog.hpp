@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongDog.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/16 10:26:38 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/11 12:23:05 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef WRONGDOG_HPP
+# define WRONGDOG_HPP
 
-#include "Brain.hpp"
-#include "AAnimal.hpp"
+#include "WrongAnimal.hpp"
 #include <string>
 
-class Dog : public AAnimal
+class WrongDog : public WrongAnimal
 {
 	public:
-		Dog(void);
-		Dog(const Dog& Dog);
-		virtual ~Dog(void);
+		WrongDog(void);
+		WrongDog(const WrongDog& WrongDog);
+		~WrongDog(void);
 
-		Dog&	operator= (const Dog& Dog);
+		WrongDog&	operator= (const WrongDog& WrongDog);
 
 		/* Member functions */	
-		void			makeSound(void) const;
-		std::string		getType(void) const;
-		std::string		getIdea(int idea_index) const;
-		void			setIdea(int idea_index, std::string ideas);
+		void		makeSound(void) const;
+		std::string	getType(void) const;
 
 	private:
-		std::string	_typeDog;
-		using		AAnimal::_type;
-		Brain*		_brain;
+		std::string	_typeWrongDog;
+		using		WrongAnimal::_type;
 };
 
 #endif
