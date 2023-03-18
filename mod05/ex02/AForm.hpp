@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:47:23 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/17 14:24:09 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/18 19:56:04 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ class AForm {
 	public:
 		AForm(void);
 		AForm(const AForm& AForm);
-		AForm(std::string name);
+		AForm(std::string name, int gradeToExecute, int gradeToSign);
 		~AForm(void);
+
 		AForm&	operator= (const AForm& AForm);
 
 		virtual void	beSigned(Bureaucrat& bureaucrat) const = 0;

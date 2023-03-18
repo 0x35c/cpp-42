@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/17 14:15:36 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/18 19:50:11 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,6 @@ std::ostream&	operator<<(std::ostream& out, const AForm& form){
 	std::cout << "Required grade to sign: " << form.getGradeToSign() << std::endl;
 	std::cout << "Required grade to execute: " << form.getGradeToExecute() << std::endl;
 	return (out);
-}
-
-void	AForm::beSigned(Bureaucrat& bureaucrat){
-	if (bureaucrat.getGrade() <= _gradeToSign)	
-		_isSigned = true;
-	else
-		throw AForm::GradeTooLowException();
 }
 
 std::string AForm::getName(void) const{
