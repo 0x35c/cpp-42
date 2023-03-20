@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:47:23 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/16 17:00:33 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/20 10:39:49 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define BUREAUCRAT_HPP
 #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 	public:
@@ -26,7 +26,8 @@ class Bureaucrat {
 		Bureaucrat&	operator= (const Bureaucrat& Bureaucrat);
 
 		/* Public member functions */
-		void		signForm(Form& Form);
+		void		signForm(AForm& AForm);
+		void		execute(AForm const& AForm);
 		int			getGrade(void) const;
 		std::string	getName(void) const;
 		void		incGrade(void);

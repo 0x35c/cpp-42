@@ -6,12 +6,13 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:59:50 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/18 20:06:07 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/20 14:01:13 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm(void): AForm("Default shrubbery", 137, 145), _target("Default target"){
 	std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
@@ -45,11 +46,34 @@ std::ostream&	operator<<(std::ostream& out, const ShrubberyCreationForm& form){
 	return (out);
 }
 
-void	ShrubberyCreationForm::beSigned(Bureaucrat& bureaucrat) const{
+void	ShrubberyCreationForm::beSigned(Bureaucrat& bureaucrat){
 	if (bureaucrat.getGrade() <= AForm::getGradeToSign())	
-		AForm::beSigned(bureaucrat);
+		_isSigned = true;
 	else
 		throw ShrubberyCreationForm::GradeTooLowException();
+}
+
+void	ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
+	std::string		fileName = _target + "_shrubbery";
+
+	if (_isSigned == true && executor.getGrade() <= this->getGradeToExecute())
+	{
+		std::ofstream	file(fileName.c_str());
+		file << std::endl;
+		file << "               ,@@@@@@@," << std::endl;
+		file << "       ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
+		file << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
+		file << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'" << std::endl;
+		file << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'" << std::endl;
+		file << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'" << std::endl;
+		file << "   `&%\\ ` /%&'    |.|        \\ '|8'" << std::endl;
+		file << "       |o|        | |         | |" << std::endl;
+		file << "       |.|        | |         | |" << std::endl;
+		file << "jgs \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_" << std::endl;
+		file << std::endl;
+	}
+	else
+		throw Bureaucrat::GradeTooLowException();
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void){

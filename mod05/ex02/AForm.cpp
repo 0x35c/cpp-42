@@ -2,10 +2,7 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
+/*                                                    +:+ +:+         +:+     */ /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */ /*                                                +#+#+#+#+#+   +#+           */ /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
 /*   Updated: 2023/03/18 19:50:11 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -42,6 +39,15 @@ std::ostream&	operator<<(std::ostream& out, const AForm& form){
 	std::cout << "Required grade to sign: " << form.getGradeToSign() << std::endl;
 	std::cout << "Required grade to execute: " << form.getGradeToExecute() << std::endl;
 	return (out);
+}
+
+void	AForm::execute(const Bureaucrat& executor) const{
+	if (_isSigned == true && executor.getGrade() <= this->getGradeToExecute())
+	{
+		std::cout << "fklsdjfalksjklfasf" << std::endl;
+	}
+	else
+		throw AForm::GradeTooLowException();
 }
 
 std::string AForm::getName(void) const{

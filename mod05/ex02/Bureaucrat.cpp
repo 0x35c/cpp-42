@@ -6,11 +6,11 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/16 17:00:23 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:32:12 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat(void):_name("Default"), _grade(150){
@@ -41,15 +41,26 @@ std::ostream&	operator<<(std::ostream& out, const Bureaucrat& bureaucrat){
 	return (out);
 }
 
-void	Bureaucrat::signForm(Form& Form){
+void	Bureaucrat::signForm(AForm& AForm){
 	try
 	{
-		Form.beSigned(*this);
-		std::cout << _name << " signed " << Form.getName() << std::endl;
+		AForm.beSigned(*this);
+		std::cout << _name << " signed " << AForm.getName() << std::endl;
 	}
-	catch (Form::GradeTooLowException)
+	catch (AForm::GradeTooLowException& e)
 	{
-		std::cout << _name << " couldn't sign " << Form.getName() << " because his grade was too low." << std::endl;	
+		std::cout << _name << " couldn't sign " << AForm.getName() << " because his grade was too low." << std::endl;	
+	}
+}
+
+void	Bureaucrat::execute(AForm const& form){
+	try
+	{
+		form.execute(*this);
+	}
+	catch (GradeTooLowException& e)
+	{
+		std::cout << "Couldnt execute form: " << e.what() << std::endl;	
 	}
 }
 

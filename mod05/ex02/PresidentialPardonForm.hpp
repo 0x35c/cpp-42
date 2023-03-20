@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:00:39 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/20 10:50:51 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:52:34 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
 #include "AForm.hpp"
 #include <string>
 
-class ShrubberyCreationForm: public AForm {
+class PresidentialPardonForm: public AForm {
 	public:
-		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const ShrubberyCreationForm& ShrubberyCreationForm);
-		ShrubberyCreationForm(std::string target);
-		~ShrubberyCreationForm(void);
+		PresidentialPardonForm(void);
+		PresidentialPardonForm(const PresidentialPardonForm& PresidentialPardonForm);
+		PresidentialPardonForm(std::string target);
+		~PresidentialPardonForm(void);
 
-		ShrubberyCreationForm&	operator= (const ShrubberyCreationForm& ShrubberyCreationForm);
+		PresidentialPardonForm&	operator= (const PresidentialPardonForm& PresidentialPardonForm);
 
 		/* Public member functions */
 		void	beSigned(Bureaucrat& bureaucrat);
@@ -34,6 +34,6 @@ class ShrubberyCreationForm: public AForm {
 		bool		_isSigned;
 };
 
-std::ostream& operator<< (std::ostream& out, const ShrubberyCreationForm& form);
+std::ostream& operator<< (std::ostream& out, const PresidentialPardonForm& form);
 
 #endif
