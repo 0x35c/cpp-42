@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:32 by ulayus            #+#    #+#             */
-/*   Updated: 2023/02/25 11:44:11 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/22 13:43:44 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ Contact::Contact(){ added = false;
 Contact::~Contact(){
 }
 
+void	exit_error(void){
+	std::cout << "Error: incorrect input" << std::endl;
+	exit(0);
+}
+
 void	GetSecureInput(std::string *str){
 	getline(std::cin, *str);
 	if ((*str).empty())
-		exit(0);
+		exit_error();
 }
 
 void	Contact::Add(void){

@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 16:20:37 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/22 13:45:39 by ulayus           ###   ########.fr       */
+/*   Created: 2023/03/16 10:47:23 by ulayus            #+#    #+#             */
+/*   Updated: 2023/03/20 15:54:49 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_HPP
-# define CONTACT_HPP
+#ifndef INTERN_HPP
+# define INTERN_HPP
+#include <string>
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-#include <iostream>
+class AForm;
 
-void	exit_error(void);
-
-class Contact
-{
+class Intern {
 	public:
-		Contact();
-		~Contact();
+		Intern(void);
+		Intern(const Intern& Intern);
+		~Intern(void);
 
-	void	Add(void);
-	void	PrintContactList(int index);
-	void	PrintContact(void);
-	bool	added;
-	
-	private:
-		std::string	_firstName;
-		std::string	_lastName;
-		std::string	_nickname;
-		std::string	_number;
-		std::string	_secret;
+		Intern&	operator= (const Intern& Intern);
+
+		/* Public member functions */
+		AForm*	makeForm(std::string name, std::string target) const;
 };
 
 #endif

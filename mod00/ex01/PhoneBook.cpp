@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:23:32 by ulayus            #+#    #+#             */
-/*   Updated: 2023/02/25 12:32:14 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/22 13:45:18 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void PhoneBook::Search(void){
 		std::cout << "Enter the index: ";
 		std::getline(std::cin, str_index);
 		if (str_index.empty())
-			std::exit(0);
+			exit_error();
 		index = std::atoi(str_index.c_str());
 		if (index > 0 && index < 9)
 		{
