@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 12:54:51 by ulayus            #+#    #+#             */
-/*   Updated: 2023/02/27 09:31:09 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/22 15:36:19 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	Account::_displayTimestamp(void){
 	if (local_time->tm_sec < 10)
 		std::cout << "0";
 	std::cout << local_time->tm_sec;
-	std::cout << "]";
+	std::cout << "] ";
 }
 
 int	Account::getNbAccounts(void){
@@ -127,7 +127,7 @@ int	Account::checkAmount(void) const{
 void	Account::displayStatus(void) const{
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
-	std::cout << "amount:" << this->_totalAmount << ";";
+	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "deposits:" << this->_nbDeposits << ";";
 	std::cout << "withdrawals:" << this->_nbWithdrawals << std::endl;
 }
