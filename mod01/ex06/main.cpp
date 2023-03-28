@@ -6,19 +6,18 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:14:52 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/01 14:29:20 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/28 13:49:29 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
-#include <cstdlib>
 
 int	main(int ac, char **av)
 {
 	Harl		human;
 	
 	if (ac != 2)
-		std::exit(0);
+		return (1);
 	human.complain(av[1]);
 	return (0);
 }
