@@ -6,19 +6,17 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/29 16:38:29 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/30 11:03:53 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <iostream>
 
-int		ScalarConverter::_converted[4] = { 0, 0, 0, 0 };
-char	ScalarConverter::_c = 0;
+int		ScalarConverter::_converted[4] = { 0, 0, 0, 0 }; char	ScalarConverter::_c = 0;
 int		ScalarConverter::_i = 0;
 float	ScalarConverter::_f = 0.0f;
 double	ScalarConverter::_d = 0.0;
-
 ScalarConverter::ScalarConverter(void){
 	std::cout << "ScalarConverter default constructor called" << std::endl;
 }
@@ -42,88 +40,128 @@ ScalarConverter&	ScalarConverter::operator= (const ScalarConverter& ScalarConver
 	return (*this);
 }
 
-int	isChar(std::string var){
-	const char	*c_var = var.c_str();
-
-	if (var.length() != 1)
-		return (0);
-	else if (isdigit(c_var[0]))
-		return (0);
-	return (1);
+static void	printChar(int token, char c){
+	std::cout << "char: ";
+	if (token == -2)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << "'" << c << "'" << std::endl;
 }
 
-int	isInt(std::string var){
-	const char	*c_var = var.c_str();
-
-	for (int i = 0; i < (int)var.length(); i++){
-		if (!isdigit(c_var[i]))
-			return (0);
-	}
-	return (1);
+static void	printInt(int token, int nb){
+	std::cout << "int: ";
+	if (token == -1)
+		std::cout << "over/underflow" << std::endl;
+	else if (token == -2)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << nb << std::endl;
 }
 
-int	isDouble(std::string var){
-	const char	*c_var = var.c_str();
-	int			i;
-
-	i = 0;
-	while (c_var[i] && c_var[i] != '.')
+static void	printFloat(int token, float nb){
+	std::cout << "float: ";
+	if (token == nINFF)
+		std::cout << "-inff" << std::endl;
+	else if (token == pINFF)
+		std::cout << "+inff" << std::endl;
+	else if (token == sNANF)
+		std::cout << "nanf" << std::endl;
+	else
 	{
-		if (!isdigit(c_var[i]))
-			return (0);
-		i++;
+		if (std::fmod(nb, 1.0) == 0)
+			std::cout << nb << ".0f" << std::endl;
+		else
+			std::cout << nb << "f" << std::endl;
 	}
-	i++;
-	while (c_var[i])
-	{
-		if (!isdigit(c_var[i]))
-			return (0);
-		i++;
-	}
-	return (1);
 }
 
-int	isFloat(std::string var){
-	const char	*c_var = var.c_str();
-	int			i;
-
-	i = 0;
-	while (c_var[i] && c_var[i] != '.')
+static void	printDouble(int token, double nb){
+	std::cout << "double: ";
+	if (token == nINF)
+		std::cout << "-inf" << std::endl;
+	else if (token == pINF)
+		std::cout << "+inf" << std::endl;
+	else if (token == sNAN)
+		std::cout << "nan" << std::endl;
+	else
 	{
-		if (!isdigit(c_var[i]))
-			return (0);
-		i++;
+		if (std::fmod(nb, 1.0) == 0)
+			std::cout << nb << ".0" << std::endl;
+		else
+			std::cout << nb << std::endl;
 	}
-	i++;
-	while (c_var[i])
-	{
-		if (c_var[i] == 'f' && i == (int)var.length() - 1)
-			return (1);
-		else if (!isdigit(c_var[i]))
-			return (0);
-		i++;
-	}
-	if (c_var[i - 1] != 'f')
-		return (0);
-	return (1);
 }
 
 void	ScalarConverter::convert(std::string var){
 	int	(* func[4])(std::string) = { &isChar, &isInt, &isFloat, &isDouble };
+	long	l_tmp;
+	float	f_tmp;
+	double	d_tmp;
 
 	for (int i = 0; i < 4; i++) {
 		ScalarConverter::_converted[i] = func[i](var);
 	}
+	if (_converted[0])
+	{
+		_c = var[0];
+		_i = (int)_c;
+		_f = static_cast<float>(_c);
+		_d = static_cast<double>(_c);
+	}
+	else if (_converted[1])
+	{
+		l_tmp = atol(var.c_str());
+		if (l_tmp > 2147483647 || l_tmp < -2147483648)
+			_converted[1] = -1;
+		else
+			_i = l_tmp;
+		if (l_tmp > 255 || l_tmp < 9)
+			_converted[0] = -2;
+		else
+			_c = (char)_i;
+		_f = static_cast<float>(l_tmp);
+		_d = static_cast<double>(l_tmp);
+	}
+	else if (_converted[2])
+	{
+		f_tmp = atof(var.c_str());
+		if (f_tmp > 2147483647.0 || f_tmp < -2147483648.0)
+			_converted[1] = -1;
+		else
+			_i = static_cast<int>(f_tmp);
+		if (f_tmp > 255.0 || f_tmp < 9.0)
+			_converted[0] = -2;
+		else
+			_c = (char)_i;
+		_f = f_tmp;
+		_d = static_cast<double>(f_tmp);
+	}
+	else if (_converted[3])
+	{
+		d_tmp = atof(var.c_str());
+		if (d_tmp > 2147483647.0 || d_tmp < -2147483648.0)
+			_converted[1] = -1;
+		else
+			_i = static_cast<int>(d_tmp);
+		if (d_tmp > 255.0 || d_tmp < 9.0)
+			_converted[0] = -2;
+		else
+			_c = (char)_i;
+		_d = d_tmp;
+		_f = static_cast<float>(d_tmp);
+	}
+}
+
+void	ScalarConverter::printNumbers(void){
 	for (int i = 0; i < 4; i++) {
 		if (i == 0)
-			std::cout << "char: ";// << _c << std::endl;
+			printChar(_converted[i], _c);
 		else if (i == 1)
-			std::cout << "int: ";// << _i << std::endl;
+			printInt(_converted[i], _i);
 		else if (i == 2)
-			std::cout << "float: ";// << _f << std::endl;
+			printFloat(_converted[i], _f);
 		else if (i == 3)
-			std::cout << "double: ";// << _d << std::endl;
-		std::cout << ScalarConverter::_converted[i] << std::endl;
+			printDouble(_converted[i], _d);
 	}
 }
 
