@@ -16,21 +16,21 @@
 const int	Fixed::_nbFractionnalBits = 8;
 
 Fixed::Fixed(void):_fixedNumber(0){
-	std::cout << "Default constructor called" << std::endl;
+	/* std::cout << "Default constructor called" << std::endl; */
 }
 
 Fixed::Fixed(const int number){
-	std::cout << "Int constructor called" << std::endl;
+	/* std::cout << "Int constructor called" << std::endl; */
 	_fixedNumber = number * (1 << _nbFractionnalBits); 	
 }
 
 Fixed::Fixed(const float number){
-	std::cout << "Float constructor called" << std::endl;
+	/* std::cout << "Float constructor called" << std::endl; */
 	_fixedNumber = roundf(number * (1 << _nbFractionnalBits)); 	
 }
 
 Fixed::Fixed(const Fixed& fixed){
-	std::cout << "Copy constructor called" << std::endl;
+	/* std::cout << "Copy constructor called" << std::endl; */
 	_fixedNumber = fixed._fixedNumber;
 }
 
@@ -79,24 +79,20 @@ bool	Fixed::operator<= (const Fixed& fixed){
 	return (false);
 }
 
-Fixed&	Fixed::operator+ (const Fixed& fixed){
-	_fixedNumber += fixed._fixedNumber;
-	return (*this);
+float	Fixed::operator+ (const Fixed& fixed){
+	return (this->toFloat() + fixed.toFloat());
 }
 
-Fixed&	Fixed::operator- (const Fixed& fixed){
-	_fixedNumber -= fixed._fixedNumber;
-	return (*this);
+float	Fixed::operator- (const Fixed& fixed){
+	return (this->toFloat() - fixed.toFloat());
 }
 
-Fixed&	Fixed::operator* (const Fixed& fixed){
-	_fixedNumber *= fixed.toFloat();
-	return (*this);
+float	Fixed::operator* (const Fixed& fixed){
+	return (this->toFloat() * fixed.toFloat());
 }
 
-Fixed&	Fixed::operator/ (const Fixed& fixed){
-	_fixedNumber /= fixed.toFloat();
-	return (*this);
+float	Fixed::operator/ (const Fixed& fixed){
+	return (this->toFloat() / fixed.toFloat());
 }
 
 Fixed	Fixed::operator++ (int){
@@ -164,5 +160,5 @@ float Fixed::toFloat(void) const{
 }
 
 Fixed::~Fixed(void){
-	std::cout << "Destructor called" << std::endl;
+	/* std::cout << "Destructor called" << std::endl; */
 }

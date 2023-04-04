@@ -6,12 +6,12 @@
 #    By: ulayus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 10:28:52 by ulayus            #+#    #+#              #
-#    Updated: 2023/04/01 17:23:51 by ulayus           ###   ########.fr        #
+#    Updated: 2023/04/03 09:33:33 by ulayus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= convert
-SRCS	= main.cpp ScalarConverter.cpp check_type.cpp
+NAME	= serialize
+SRCS	= main.cpp Serializer.cpp
 CC 		= c++
 CFLAGS  = -g -Wall -Wextra -Werror -std=c++98
 OBJS    = $(SRCS:.cpp=.o)

@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 14:48:58 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/04 15:45:30 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/03/31 16:36:47 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point){
 	A1 = calculate_area(point.getX(), point.getY(), b.getX(), b.getY(), c.getX(), c.getY());
 	A2 = calculate_area(a.getX(), a.getY(), point.getX(), point.getY(), c.getX(), c.getY());
 	A3 = calculate_area(a.getX(), a.getY(), b.getX(), b.getY(), point.getX(), point.getY());
-	if (A0 == A1 + A2 + A3)
+	if (A1 == 0 || A2 == 0 || A3 == 0)
+		return (false);
+	else if (A0 == A1 + A2 + A3)
 		return (true);
 	return (false);
 }

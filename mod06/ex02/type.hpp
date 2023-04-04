@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   type.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 10:17:15 by ulayus            #+#    #+#             */
-/*   Updated: 2023/04/04 10:23:31 by ulayus           ###   ########.fr       */
+/*   Created: 2023/04/03 17:39:00 by ulayus            #+#    #+#             */
+/*   Updated: 2023/04/03 17:39:59 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef TYPE_HPP
+#define TYPE_HPP
 
-int	main(void)
-{
-	ClapTrap	louis("Louis");
-	ClapTrap	armand("Armand");
-	ClapTrap	mbabo("Mbabo");
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-	for (int i = 0; i < 11; i++)
-		louis.attack("oui");		
-	mbabo.takeDamage(3);
-	mbabo.beRepaired(2);
-	armand.takeDamage(11);
-	armand.beRepaired(2);
-	return (0);
-}
+Base*	generate(void);
+void	identify(Base* p);
+void	identify(Base& p);
+
+
+#endif

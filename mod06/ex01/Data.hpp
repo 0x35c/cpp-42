@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 10:17:15 by ulayus            #+#    #+#             */
-/*   Updated: 2023/04/04 10:23:31 by ulayus           ###   ########.fr       */
+/*   Created: 2023/04/03 09:20:48 by ulayus            #+#    #+#             */
+/*   Updated: 2023/04/03 09:21:53 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include <string>
 
-int	main(void)
+typedef struct t_Data
 {
-	ClapTrap	louis("Louis");
-	ClapTrap	armand("Armand");
-	ClapTrap	mbabo("Mbabo");
-
-	for (int i = 0; i < 11; i++)
-		louis.attack("oui");		
-	mbabo.takeDamage(3);
-	mbabo.beRepaired(2);
-	armand.takeDamage(11);
-	armand.beRepaired(2);
-	return (0);
-}
+	std::string	message;
+	int			value;
+}	Data;

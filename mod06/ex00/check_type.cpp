@@ -6,17 +6,38 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:47:58 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/30 11:05:21 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/04/03 09:52:11 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
+int	isStrDigit(std::string var)
+{
+	bool	isPoint;
+	bool	isSign;
+
+	isPoint = false;
+	isSign = false;
+	for (int i = 0; i < (int)var.length(); i++) {
+		if (i == 0 && (var[i] == '-' || var[i] == '+'))
+		{
+			isSign = true;
+			i++;
+		}
+		if (var[i] == '.' && isSign == true && isPoint == false && isdigit((var.c_str())[i - 1]))
+			isPoint = true;
+		if (!isdigit((var.c_str())[i]))
+			return (0);	
+	}
+		return (1);
+}
+
 int	isChar(std::string var){
 	const char	*c_var = var.c_str();
 
 	if (var.length() != 1)
-		return (0);
+		return (-4);
 	else if (isdigit(c_var[0]))
 		return (0);
 	return (1);
@@ -27,6 +48,8 @@ int	isInt(std::string var){
 	int			i;
 
 	i = 0;
+	if (isStrDigit(var) == 0 && var.length() > 1)
+		return (-4);
 	if (c_var[i] == '-' || c_var[i] == '+')
 		i++;
 	while (c_var[i])
@@ -48,6 +71,8 @@ int	isDouble(std::string var){
 		return (pINF);
 	else if(var == "nan")
 		return (sNAN);
+	if (isStrDigit(var) == 0 && var.length() > 1)
+		return (-4);
 	i = 0;
 	if (c_var[i] == '-' || c_var[i] == '+')
 		i++;
@@ -79,6 +104,8 @@ int	isFloat(std::string var){
 		return (pINFF);
 	else if(var == "nanf")
 		return (sNANF);
+	if (isStrDigit(var) == 0 && var.length() > 1)
+		return (-4);
 	i = 0;
 	if (c_var[i] == '-' || c_var[i] == '+')
 		i++;
