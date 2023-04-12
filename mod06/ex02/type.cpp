@@ -6,20 +6,21 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:41:22 by ulayus            #+#    #+#             */
-/*   Updated: 2023/04/03 18:54:48 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:36:59 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "type.hpp"
-#include <cstdlib>
-#include <iostream>
 
 Base*	generate(void){
-	if (rand() % 3 == 0)
+	int	nb;
+
+	nb = rand();
+	if (nb % 3 == 0)
 		return (new A());
-	else if (rand() % 4 == 0)
+	else if (nb % 3 == 1)
 		return (new B());
-	else if (rand() % 5 == 0)
+	else if (nb % 3 == 2)
 		return (new C());
 	else
 		return (NULL);

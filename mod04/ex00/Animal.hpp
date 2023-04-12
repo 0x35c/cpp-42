@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/11 12:24:22 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/04/06 09:43:32 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Animal
 	public:
 		Animal(void);
 		Animal(const Animal& Animal);
-		~Animal(void);
+		virtual ~Animal(void);
 
 		Animal&	operator= (const Animal& Animal);
 

@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:17:15 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/08 17:39:09 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/04/04 13:35:02 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 
 int	main(void)
 {
-	ClapTrap	louis("Louis");
-	FragTrap	armand("Armand");
-	ScavTrap	mbabo("Mbabo");
+	ClapTrap	armand("Armand");
+	ScavTrap	louis("Louis");
+	FragTrap	mbabo("Mbabo");
 
-	louis.attack("yes");		
-	armand.attack("maybe");		
-	armand.takeDamage(1);
-	armand.highFivesGuys();
-	mbabo.guardGate();
-	mbabo.attack("no");
-	mbabo.beRepaired(10);
+	for (int i = 0; i < 11; i++)
+		louis.attack("oui");		
+	louis.guardGate();
+	mbabo.takeDamage(3);
+	mbabo.beRepaired(2);
+	mbabo.highFivesGuys();
+	armand.takeDamage(11);
+	armand.beRepaired(2);
 	return (0);
 }

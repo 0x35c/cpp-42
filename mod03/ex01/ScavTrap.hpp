@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:19:17 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/09 13:10:49 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/04/04 11:06:22 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 class ScavTrap : public ClapTrap
 {
 	public:
-		ScavTrap(void);
 		ScavTrap(std::string name);
 		ScavTrap(const ScavTrap& ScavTrap);
 		~ScavTrap(void);
@@ -27,8 +26,11 @@ class ScavTrap : public ClapTrap
 		ScavTrap&	operator= (const ScavTrap& ScavTrap);
 
 		/* Member functions */
-		void			guardGate(void);
-		virtual void	attack(const std::string& target);
+		void	guardGate(void);
+		void	attack(const std::string& target);
+
+	private:
+		ScavTrap(void);
 };
 
 #endif

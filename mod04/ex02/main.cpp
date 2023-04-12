@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 11:50:42 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/16 10:27:24 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/04/06 10:21:27 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int main()
 	}
 	std::cout << "Idea number 4 of the first cat: " << ((Cat *)array[0])->getIdea(3) << std::endl;
 	std::cout << "Idea number 7 of the first dog: " << ((Cat *)array[1])->getIdea(6) << std::endl;
+
+	const AAnimal*	newDog((Dog *)array[1]);
+	std::cout << "Idea number 4 of the new " << ((Dog *)newDog)->getType() << ": " << ((Dog *)newDog)->getIdea(6) << std::endl;
 
 	for (int i = 0; i < LEN_ARRAY; i++){
 		delete array[i];

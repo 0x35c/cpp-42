@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/08 15:29:16 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/04/04 11:10:25 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <iostream>
 
 ScavTrap::ScavTrap(void): ClapTrap(){
-	_name = "";
+	_name = "default";
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
@@ -55,7 +55,7 @@ void	ScavTrap::attack(const std::string& target){
 	else
 	{
 		if (_hitPoints < 1)
-			std::cout << "Attack impossible: not enough hit points" << std::endl;
+			std::cout << "Attack impossible: " << _name << " died." << std::endl;
 		if (_energyPoints < 1)
 			std::cout << "Attack impossible: not enough energy points" << std::endl;
 	}

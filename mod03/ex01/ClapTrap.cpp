@@ -6,31 +6,31 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/08 15:07:59 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/04/04 10:22:32 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include <iostream>
 
-ClapTrap::ClapTrap(void):_name(), _hitPoints(10), _energyPoints(10), _attackDamage(0){
-	std::cout << "ClapTrap default constructor called" << std::endl;
+ClapTrap::ClapTrap(void):_name("default"), _hitPoints(10), _energyPoints(10), _attackDamage(0){
+	std::cout << "Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& ClapTrap){
-	std::cout << "ClapTrap copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 	_name = ClapTrap._name;
 	_hitPoints = ClapTrap._hitPoints;
 	_energyPoints = ClapTrap._energyPoints;
 	_attackDamage = ClapTrap._attackDamage;
 }
 
-ClapTrap::ClapTrap(std::string name):_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0){
-	std::cout << "ClapTrap name constructor called" << std::endl;
+ClapTrap::ClapTrap(const std::string name):_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0){
+	std::cout << "Name constructor called" << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator= (const ClapTrap& ClapTrap){
-	std::cout << "ClapTrap copy assignment operator overload called" << std::endl;
+	std::cout << "Copy assignment operator overload called" << std::endl;
 	_name = ClapTrap._name;
 	_hitPoints = ClapTrap._hitPoints;
 	_energyPoints = ClapTrap._energyPoints;
@@ -47,7 +47,7 @@ void	ClapTrap::attack(const std::string& target){
 	else
 	{
 		if (_hitPoints < 1)
-			std::cout << "Attack impossible: not enough hit points" << std::endl;
+			std::cout << "Attack impossible: " << _name << " died." << std::endl;
 		if (_energyPoints < 1)
 			std::cout << "Attack impossible: not enough energy points" << std::endl;
 	}
@@ -55,6 +55,8 @@ void	ClapTrap::attack(const std::string& target){
 
 void	ClapTrap::takeDamage(unsigned int amount){
 		_hitPoints -= amount;
+		if (_hitPoints < 0)
+			_hitPoints = 0;
 		std::cout << "ClapTrap " << _name << " takes " << amount << " damage!" << std::endl; 
 		std::cout << "He now has " << _hitPoints << " hit points!" << std::endl;
 }
@@ -69,13 +71,13 @@ void	ClapTrap::beRepaired(unsigned int amount){
 	}
 	else
 	{
-		if (_hitPoints < 1)
-			std::cout << "Repairing impossible: not enough hit points" << std::endl;
-		if (_energyPoints < 1)
+		if (_hitPoints == 0)
+			std::cout << "Repairing impossible: " << _name << " died." << std::endl;
+		if (_energyPoints == 0)
 			std::cout << "Repairing impossible: not enough energy points" << std::endl;
 	}
 }
 
 ClapTrap::~ClapTrap(void){
-	std::cout << "ClapTrap destructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }

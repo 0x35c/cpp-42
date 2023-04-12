@@ -6,13 +6,12 @@
 #    By: ulayus <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 10:28:52 by ulayus            #+#    #+#              #
-#    Updated: 2023/04/06 10:21:17 by ulayus           ###   ########.fr        #
+#    Updated: 2023/04/12 20:01:29 by ulayus           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= abstract
-SRCS	= main.cpp AAnimal.cpp Dog.cpp Cat.cpp Brain.cpp\
-		  WrongAnimal.cpp WrongCat.cpp
+NAME	= array
+SRCS	= main.cpp
 CC 		= c++
 CFLAGS  = -g -Wall -Wextra -Werror -std=c++98
 OBJS    = $(SRCS:.cpp=.o)
