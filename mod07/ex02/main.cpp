@@ -1,41 +1,75 @@
 #include <iostream>
-#include "iter.hpp"
-#define LEN_TAB 4
+#include <sstream>
+#include <cstdlib>
+#include "Array.hpp"
 
-void	addToInt(int* value)
+#define MAX_VAL 750
+int main(int, char**)
 {
-	*value += 10;
-}
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
-void	addToStr(std::string* str)
-{
-	*str += "_modified";
-}
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-int	main(void)
-{
-	std::string	strArray[LEN_TAB] = { "element1", "element2", "element3", "element4" };
-	int			intArray[LEN_TAB] = { 1, 2, 3, 4 };
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+	{
+		Array<std::string> strArray(10);
+		std::ostringstream str;	
 
-	std::cout << "Arrays before iteration: " << std::endl;
-	for (int i = 0; i < LEN_TAB; i++) {
-		std::cout << strArray[i] << std::endl;
+		for (int i = 0; i < 10; i++) {
+			str << i;
+			strArray[i] = "string " + str.str();
+			str.str("");
+			str.clear();
+		}
+		try {
+			std::cout << strArray[1] << std::endl;
+			std::cout << strArray[9] << std::endl;
+			std::cout << strArray[10] << std::endl;
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
-	for (int i = 0; i < LEN_TAB; i++) {
-		std::cout << intArray[i] << std::endl;
-	}
-	std::cout << std::endl;
-
-	iter(strArray, LEN_TAB, &addToStr);
-	iter(intArray, LEN_TAB, &addToInt);
-
-	std::cout << "Arrays after iteration: " << std::endl;
-	for (int i = 0; i < LEN_TAB; i++) {
-		std::cout << strArray[i] << std::endl;
-	}
-	for (int i = 0; i < LEN_TAB; i++) {
-		std::cout << intArray[i] << std::endl;
-	}
-
-	return (0);
+    return 0;
 }
