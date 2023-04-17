@@ -1,6 +1,9 @@
 #include "BitcoinExchange.hpp"
 #include <cstdlib>
 
+// Utils function to get a part of a string with its
+// following index and a defined separator, it will
+// then return the string corresponding to it.
 std::string getToken(const std::string& str, char sep, int pos){
 	std::string token;
 	int			cur_pos;
@@ -80,4 +83,24 @@ bool checkNumber(const std::string& str, bool dotAllowed)
 	if (std::atol(str.c_str()) > 2147463647)
 		return (false);
 	return (true);
+}
+
+// This function will print the date and the value between
+// the database and the input, or the closest lower date 
+// if not found in the database.
+void printDate(map& database, std::string keyValue, std::string keyToken)
+{
+	map::iterator tmp;
+	float value = std::atof(keyValue.c_str());
+
+	if ((tmp = database.find(keyToken)) != database.end()){
+		std::cout << keyToken << " => " << keyValue
+		<< " = " << tmp->second * value
+		<< std::endl;
+	}
+	else if ((tmp = database.lower_bound(keyToken)) != database.end()){
+		std::cout << keyToken << " => " << keyValue
+		<< " = " << tmp->second * value
+		<< std::endl;
+	}
 }
