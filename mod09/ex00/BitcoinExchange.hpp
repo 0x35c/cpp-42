@@ -18,4 +18,4 @@ typedef struct s_date {
 std::string getToken(const std::string& str, char sep, int pos);
 bool checkFormatKey(const std::string& str);
 bool checkNumber(const std::string& str, bool dotAllowed);
-void printDate(map& database, std::string keyValue, std::string keyToken);
+void printDate(map& database, std::string keyValue, std::string keyToken, float value);

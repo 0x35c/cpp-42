@@ -88,10 +88,9 @@ bool checkNumber(const std::string& str, bool dotAllowed)
 // This function will print the date and the value between
 // the database and the input, or the closest lower date 
 // if not found in the database.
-void printDate(map& database, std::string keyValue, std::string keyToken)
+void printDate(map& database, std::string keyValue, std::string keyToken, float value)
 {
 	map::iterator tmp;
-	float value = std::atof(keyValue.c_str());
 
 	if ((tmp = database.find(keyToken)) != database.end()){
 		std::cout << keyToken << " => " << keyValue

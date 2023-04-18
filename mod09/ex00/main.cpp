@@ -1,5 +1,7 @@
 #include "BitcoinExchange.hpp"
 
+bool firstLine;
+
 // This function will check the database format 
 // which should be as following: yyyy-mm-dd,value
 static map parseDatabase(std::ifstream& infile)
@@ -9,15 +11,24 @@ static map parseDatabase(std::ifstream& infile)
 	std::string keyToken;
 	std::string keyValue;
 
+	firstLine = true;
 	while (std::getline(infile, str))
 	{
-		keyToken = getToken(str, ',', 1);
-		if (checkFormatKey(keyToken) == false)
-			throw std::invalid_argument("Error on the format: " + keyToken);
-		keyValue = getToken(str, ',', 2);
-		if (checkNumber(keyValue, true) == false)
-			throw std::invalid_argument("Error on the format: " + keyValue);
-		database.insert(std::pair<std::string, float>(keyToken, std::atof(keyValue.c_str())));
+		if (firstLine == true)
+		{
+			if (str != "date | value")
+				throw std::invalid_argument("Missing format at start of file");
+			firstLine = false;
+		}
+		else {
+			keyToken = getToken(str, ',', 1);
+			if (!str.empty() && checkFormatKey(keyToken) == false)
+				throw std::invalid_argument("Error on the format: " + keyToken);
+			keyValue = getToken(str, ',', 2);
+			if (!str.empty() && checkNumber(keyValue, true) == false)
+				throw std::invalid_argument("Error on the format: " + keyValue);
+			database.insert(std::pair<std::string, float>(keyToken, std::atof(keyValue.c_str())));
+		}
 	}
 	return (database);
 }
@@ -27,30 +38,44 @@ static map parseDatabase(std::ifstream& infile)
 //
 // It will then print the date and its value
 // or the error message corresponding
-static map printInput(std::ifstream& infile, map& database)
+static void printInput(std::ifstream& infile, map& database)
 {
-	map map;
+	float value;
 	std::string str;
 	std::string keyToken;
 	std::string keySep;
 	std::string keyValue;
 
+	firstLine = true;
 	while (std::getline(infile, str))
 	{
-		keyToken = getToken(str, ' ', 1);
-		keySep = getToken(str, ' ', 2);
-		keyValue = getToken(str, ' ', 3);
-		if (checkFormatKey(keyToken) == false)
-			std::cout << "Error on date: " + str << std::endl;
-		else if (keySep != "|")
-			std::cout << "Error on format: " + str << std::endl;
-		else if (checkNumber(keyValue, true) == false)
-			std::cout << "Error on value: " + str << std::endl;
+		if (firstLine == true) {
+			if (str != "date | value") {
+				std::cout << "Missing format at start of file" << std::endl;
+				return ;
+			}
+			firstLine = false;
+		}
 		else {
-			printDate(database, keyValue, keyToken);
+			keyToken = getToken(str, ' ', 1);
+			keySep = getToken(str, ' ', 2);
+			keyValue = getToken(str, ' ', 3);
+			value = std::atof(keyValue.c_str());
+			if (checkFormatKey(keyToken) == false)
+				std::cout << "Error on date: " + str << std::endl;
+			else if (keyValue.empty())
+				std::cout << "Error: empty value or too much spaces" << std::endl;
+			else if (keySep != "|")
+				std::cout << "Error on format: " + str << std::endl;
+			else if (checkNumber(keyValue, true) == false)
+				std::cout << "Error on value: " + str << std::endl;
+			else if (value > 1000.0)
+				std::cout << "Error: too high value: " << value << std::endl;
+			else {
+				printDate(database, keyValue, keyToken, value);
+			}
 		}
 	}
-	return (map);
 }
 
 int	main(int ac, char **av)
@@ -77,8 +102,9 @@ int	main(int ac, char **av)
 	try {
 		database = parseDatabase(dbInfile);
 	}
-	catch (std::exception& e) {
+	catch (std::invalid_argument& e) {
 		std::cout << e.what() << std::endl;
+		return (EXIT_FAILURE);
 	}
 
 	// Opening of the input file
