@@ -6,13 +6,13 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:47:23 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/20 10:57:39 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:20:04 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AFORM_HPP
-# define AFORM_HPP
-#include <string>
+#ifndef AFORM_HPP_
+#define AFORM_HPP_
+
 #include "Bureaucrat.hpp"
 
 class AForm {
@@ -30,22 +30,17 @@ class AForm {
 		std::string		getName(void) const;
 		virtual void	execute(Bureaucrat const& executor) const;
 		bool			getIsSigned(void) const;
-		void			setIsSigned(bool value);
 		int				getGradeToSign(void) const;
 		int				getGradeToExecute(void) const;
 
-	class GradeTooHighException: std::exception {
+	class GradeTooHighException: public std::exception {
 		public:
-			virtual const char* what() const throw(){
-				return ("GradeTooHighException");
-			}
+			virtual const char* what() const throw();
 	};
 
-	class GradeTooLowException: std::exception {
+	class GradeTooLowException: public std::exception {
 		public:
-			virtual const char* what() const throw(){
-				return ("GradeTooLowException");
-			}
+			virtual const char* what() const throw();
 	};
 
 	private:

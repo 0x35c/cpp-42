@@ -6,31 +6,30 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:59:50 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/22 09:41:03 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:16:45 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
-#include <iostream>
 
-PresidentialPardonForm::PresidentialPardonForm(void): AForm("Default shrubbery", 5, 25), _target("Default target"){
+PresidentialPardonForm::PresidentialPardonForm(void): AForm("presidential pardon form", 5, 25), _target("default"){
 	std::cout << "PresidentialPardonForm default constructor called" << std::endl;
 	_isSigned = false;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& PresidentialPardonForm): AForm(){
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other): AForm(other.getName(), other.getGradeToExecute(), other.getGradeToSign()){
 	std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
-	_isSigned = PresidentialPardonForm._isSigned;
+	_isSigned = other._isSigned;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target): AForm("Default shrubbery", 5, 25), _target(target){
+PresidentialPardonForm::PresidentialPardonForm(std::string target): AForm("presidential pardon form", 5, 25), _target(target){
 	std::cout << "PresidentialPardonForm with arguments constructor called" << std::endl;
 	_isSigned = false;
 }
 
-PresidentialPardonForm&	PresidentialPardonForm::operator= (const PresidentialPardonForm& PresidentialPardonForm){
+PresidentialPardonForm&	PresidentialPardonForm::operator= (const PresidentialPardonForm& other){
 	std::cout << "PresidentialPardonForm copy assignment operator overload called" << std::endl;
-	_isSigned = PresidentialPardonForm._isSigned;
+	_isSigned = other._isSigned;
 	return (*this);
 }
 

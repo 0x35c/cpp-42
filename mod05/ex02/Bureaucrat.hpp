@@ -6,12 +6,13 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 10:47:23 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/20 10:39:49 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 13:49:41 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef BUREAUCRAT_HPP_
+#define BUREAUCRAT_HPP_
+
 #include <string>
 
 class AForm;
@@ -33,18 +34,14 @@ class Bureaucrat {
 		void		incGrade(void);
 		void		decGrade(void);
 
-	class GradeTooHighException: std::exception {
+	class GradeTooHighException: public std::exception {
 		public:
-			virtual const char* what() const throw(){
-				return ("GradeTooHighException");
-			}
+			virtual const char* what() const throw();
 	};
 
-	class GradeTooLowException: std::exception {
+	class GradeTooLowException: public std::exception {
 		public:
-			virtual const char* what() const throw(){
-				return ("GradeTooLowException");
-			}
+			virtual const char* what() const throw();
 	};
 
 	private:

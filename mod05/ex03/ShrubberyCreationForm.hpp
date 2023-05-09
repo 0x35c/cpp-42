@@ -6,24 +6,23 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:00:39 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/20 10:50:51 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:19:36 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP_
+#define SHRUBBERYCREATIONFORM_HPP_
 
 #include "AForm.hpp"
-#include <string>
 
 class ShrubberyCreationForm: public AForm {
 	public:
 		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const ShrubberyCreationForm& ShrubberyCreationForm);
+		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		ShrubberyCreationForm(std::string target);
 		~ShrubberyCreationForm(void);
 
-		ShrubberyCreationForm&	operator= (const ShrubberyCreationForm& ShrubberyCreationForm);
+		ShrubberyCreationForm&	operator= (const ShrubberyCreationForm& other);
 
 		/* Public member functions */
 		void	beSigned(Bureaucrat& bureaucrat);

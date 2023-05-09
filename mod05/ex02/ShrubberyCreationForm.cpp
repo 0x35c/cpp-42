@@ -6,32 +6,31 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:59:50 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/22 09:40:36 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:16:36 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
-#include <iostream>
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(void): AForm("Default shrubbery", 137, 145), _target("Default target"){
+ShrubberyCreationForm::ShrubberyCreationForm(void): AForm("shrubbery", 137, 145), _target("default"){
 	std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
 	_isSigned = false;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& ShrubberyCreationForm): AForm(){
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other): AForm(other.getName(), other.getGradeToExecute(), other.getGradeToSign()){
 	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
-	_isSigned = ShrubberyCreationForm._isSigned;
+	_isSigned = other._isSigned;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("Default shrubbery", 137, 145), _target(target){
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("shrubbery", 137, 145), _target(target){
 	std::cout << "ShrubberyCreationForm with arguments constructor called" << std::endl;
 	_isSigned = false;
 }
 
-ShrubberyCreationForm&	ShrubberyCreationForm::operator= (const ShrubberyCreationForm& ShrubberyCreationForm){
+ShrubberyCreationForm&	ShrubberyCreationForm::operator= (const ShrubberyCreationForm& other){
 	std::cout << "ShrubberyCreationForm copy assignment operator overload called" << std::endl;
-	_isSigned = ShrubberyCreationForm._isSigned;
+	_isSigned = other._isSigned;
 	return (*this);
 }
 

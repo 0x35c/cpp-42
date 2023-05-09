@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:00:39 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/20 13:55:11 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:14:56 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 class RobotomyRequestForm: public AForm {
 	public:
 		RobotomyRequestForm(void);
-		RobotomyRequestForm(const RobotomyRequestForm& RobotomyRequestForm);
+		RobotomyRequestForm(const RobotomyRequestForm& other);
 		RobotomyRequestForm(std::string target);
 		~RobotomyRequestForm(void);
 
-		RobotomyRequestForm&	operator= (const RobotomyRequestForm& RobotomyRequestForm);
+		RobotomyRequestForm&	operator= (const RobotomyRequestForm& other);
 
 		/* Public member functions */
 		void	beSigned(Bureaucrat& bureaucrat);

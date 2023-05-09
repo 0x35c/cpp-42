@@ -2,8 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */ /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */ /*                                                +#+#+#+#+#+   +#+           */ /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/18 19:50:11 by ulayus           ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
+/*   Updated: 2023/05/09 13:52:57 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +24,10 @@ AForm::AForm(const AForm& AForm): _name(AForm._name), _gradeToExecute(AForm._gra
 }
 
 AForm::AForm(std::string name, int gradeToExecute, int gradeToSign):_name(name), _gradeToExecute(gradeToExecute), _gradeToSign(gradeToSign){
+	if (gradeToExecute > 150 || gradeToSign > 150)
+		throw AForm::GradeTooLowException();
+	else if (gradeToExecute < 1 || gradeToSign < 1)
+		throw AForm::GradeTooHighException();
 	std::cout << "AForm with arguments constructor called" << std::endl;
 }
 
@@ -41,14 +48,21 @@ std::ostream&	operator<<(std::ostream& out, const AForm& form){
 	return (out);
 }
 
+void	AForm::beSigned(Bureaucrat& bureaucrat){
+	if (bureaucrat.getGrade() <= _gradeToSign)	
+		_isSigned = true;
+	else
+		throw AForm::GradeTooLowException();
+}
+
 void	AForm::execute(const Bureaucrat& executor) const{
-	if (_isSigned == true && executor.getGrade() <= this->getGradeToExecute())
-	{
-		std::cout << "fklsdjfalksjklfasf" << std::endl;
+	if (_isSigned == true && executor.getGrade() <= this->getGradeToExecute()) {
+		std::cout << "random function" << std::endl;
 	}
 	else
 		throw AForm::GradeTooLowException();
 }
+
 
 std::string AForm::getName(void) const{
 	return (_name);
@@ -64,6 +78,14 @@ int	AForm::getGradeToExecute(void) const{
 
 int	AForm::getGradeToSign(void) const{
 	return (_gradeToSign);
+}
+
+const char* AForm::GradeTooHighException::what() const throw() {
+	return ("The grade is too high for the required action.");
+}
+
+const char* AForm::GradeTooLowException::what() const throw() {
+	return ("The grade is too low for the required action.");
 }
 
 AForm::~AForm(void){

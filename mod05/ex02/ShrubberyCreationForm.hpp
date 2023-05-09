@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 14:00:39 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/20 10:50:51 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 15:11:11 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 class ShrubberyCreationForm: public AForm {
 	public:
 		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const ShrubberyCreationForm& ShrubberyCreationForm);
+		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		ShrubberyCreationForm(std::string target);
 		~ShrubberyCreationForm(void);
 
-		ShrubberyCreationForm&	operator= (const ShrubberyCreationForm& ShrubberyCreationForm);
+		ShrubberyCreationForm&	operator= (const ShrubberyCreationForm& other);
 
 		/* Public member functions */
 		void	beSigned(Bureaucrat& bureaucrat);

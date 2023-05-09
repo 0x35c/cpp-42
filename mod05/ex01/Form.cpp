@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/16 16:59:30 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 13:36:20 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ Form::Form(const Form& Form): _name(Form._name), _gradeToExecute(Form._gradeToEx
 }
 
 Form::Form(std::string name, int gradeToExecute, int gradeToSign):_name(name), _gradeToExecute(gradeToExecute), _gradeToSign(gradeToSign){
+	if (gradeToExecute > 150 || gradeToSign > 150)
+		throw Form::GradeTooLowException();
+	else if (gradeToExecute < 1 || gradeToSign < 1)
+		throw Form::GradeTooHighException();
 	std::cout << "Form with arguments constructor called" << std::endl;
 }
 
@@ -65,6 +69,14 @@ int	Form::getGradeToExecute(void) const{
 
 int	Form::getGradeToSign(void) const{
 	return (_gradeToSign);
+}
+
+const char* Form::GradeTooHighException::what() const throw() {
+	return ("The grade is too high for the required action.");
+}
+
+const char* Form::GradeTooLowException::what() const throw() {
+	return ("The grade is too low for the required action.");
 }
 
 Form::~Form(void){
