@@ -6,15 +6,16 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/04/03 09:40:07 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/09 16:16:14 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <cstdlib>
 #include <iostream>
 
-int		ScalarConverter::_converted[4] = { 0, 0, 0, 0 }; char	ScalarConverter::_c = 0;
-int		ScalarConverter::_i = 0;
+int		ScalarConverter::_converted[4] = { 0, 0, 0, 0 };
+char	ScalarConverter::_c = 0; int		ScalarConverter::_i = 0;
 float	ScalarConverter::_f = 0.0f;
 double	ScalarConverter::_d = 0.0;
 
@@ -22,25 +23,25 @@ ScalarConverter::ScalarConverter(void){
 	/* std::cout << "ScalarConverter default constructor called" << std::endl; */
 }
 
-ScalarConverter::ScalarConverter(const ScalarConverter& ScalarConverter){
+ScalarConverter::ScalarConverter(const ScalarConverter& other){
 	/* std::cout << "ScalarConverter copy constructor called" << std::endl; */
-	ScalarConverter::_c = ScalarConverter._c;
-	ScalarConverter::_i = ScalarConverter._i;
-	ScalarConverter::_f = ScalarConverter._f;
-	ScalarConverter::_d = ScalarConverter._d;
+	ScalarConverter::_c = other._c;
+	ScalarConverter::_i = other._i;
+	ScalarConverter::_f = other._f;
+	ScalarConverter::_d = other._d;
 	for (int i = 0; i < 4; i++){
-		ScalarConverter::_converted[i] = ScalarConverter._converted[i];
+		ScalarConverter::_converted[i] = other._converted[i];
 	}
 }
 
-ScalarConverter&	ScalarConverter::operator= (const ScalarConverter& ScalarConverter){
+ScalarConverter&	ScalarConverter::operator= (const ScalarConverter& other){
 	/* std::cout << "ScalarConverter copy assignment operator overload called" << std::endl; */
-	ScalarConverter::_c = ScalarConverter._c;
-	ScalarConverter::_i = ScalarConverter._i;
-	ScalarConverter::_f = ScalarConverter._f;
-	ScalarConverter::_d = ScalarConverter._d;
+	ScalarConverter::_c = other._c;
+	ScalarConverter::_i = other._i;
+	ScalarConverter::_f = other._f;
+	ScalarConverter::_d = other._d;
 	for (int i = 0; i < 4; i++){
-		ScalarConverter::_converted[i] = ScalarConverter._converted[i];
+		ScalarConverter::_converted[i] = other._converted[i];
 	}
 	return (*this);
 }
@@ -106,33 +107,34 @@ static void	printDouble(int token, double nb){
 void	ScalarConverter::convert(std::string var){
 	int	(* func[4])(std::string) = { &isChar, &isInt, &isFloat, &isDouble };
 	long	l_tmp;
-	float	f_tmp;
-	double	d_tmp;
 
 	for (int i = 0; i < 4; i++) {
 		ScalarConverter::_converted[i] = func[i](var);
 	}
-	if (_converted[3] == sNAN)
-	{_converted[0] = -2; _converted[1] = -2; _converted[2] = sNANF;}
+	if (_converted[3] == sNAN || _converted[2] == sNANF || _converted[3] == pINF || _converted[2] == pINFF || _converted[3] == nINF || _converted[2] == nINFF) {
+		_converted[0] = -2;
+		_converted[1] = -2;
+	}
+	if (_converted[3] == sNAN) {
+		_converted[2] = sNANF;
+	}
 	else if (_converted[2] == sNANF)
-	{_converted[0] = -2; _converted[1] = -2; _converted[3] = sNAN;}
+		_converted[3] = sNAN;
 	else if (_converted[3] == pINF)
-	{_converted[0] = -2; _converted[1] = -2; _converted[2] = pINFF;}
+		_converted[2] = pINFF;
 	else if (_converted[2] == pINFF)
-	{_converted[0] = -2; _converted[1] = -2; _converted[3] = pINF;}
+		_converted[3] = pINF;
 	else if (_converted[3] == nINF)
-	{_converted[0] = -2; _converted[1] = -2; _converted[2] = nINFF;}
+		_converted[2] = nINFF;
 	else if (_converted[2] == nINFF)
-	{_converted[0] = -2; _converted[1] = -2; _converted[3] = nINF;}
-	if (_converted[0])
-	{
+		_converted[3] = nINF;
+	if (_converted[0] == 1) {
 		_c = var[0];
 		_i = (int)_c;
 		_f = static_cast<float>(_c);
 		_d = static_cast<double>(_c);
 	}
-	else if (_converted[1])
-	{
+	else if (_converted[1] == 1) {
 		l_tmp = atol(var.c_str());
 		if (l_tmp > 2147483647 || l_tmp < -2147483648)
 			_converted[1] = -1;
@@ -145,33 +147,48 @@ void	ScalarConverter::convert(std::string var){
 		_f = static_cast<float>(l_tmp);
 		_d = static_cast<double>(l_tmp);
 	}
-	else if (_converted[2])
-	{
-		f_tmp = atof(var.c_str());
-		if (f_tmp > 2147483647.0 || f_tmp < -2147483648.0)
-			_converted[1] = -1;
-		else
-			_i = static_cast<int>(f_tmp);
-		if (f_tmp > 255.0 || f_tmp < 9.0)
-			_converted[0] = -2;
-		else
-			_c = (char)_i;
-		_f = f_tmp;
-		_d = static_cast<double>(f_tmp);
-	}
-	else if (_converted[3])
-	{
-		d_tmp = atof(var.c_str());
-		if (d_tmp > 2147483647.0 || d_tmp < -2147483648.0)
-			_converted[1] = -1;
-		else
-			_i = static_cast<int>(d_tmp);
-		if (d_tmp > 255.0 || d_tmp < 9.0)
-			_converted[0] = -2;
-		else
-			_c = (char)_i;
-		_d = d_tmp;
-		_f = static_cast<float>(d_tmp);
+	else {
+		const char *c_var = var.c_str();
+		char *end;
+		double doubleNumber = 0;
+		float floatNumber = 0;
+		
+		doubleNumber = strtod(c_var, &end);
+		if (*end != '\0') {
+			if (*end == 'f' && *(end + 1) == '\0')
+				floatNumber = strtof(c_var, &end);
+			else {
+				_converted[0] = -4;
+				_converted[1] = -4;
+				_converted[2] = -4;
+				_converted[3] = -4;
+				return ;
+			}
+		}	
+		if (floatNumber != 0) {
+			if (floatNumber > 255.0 || floatNumber < 9.0)
+				_converted[0] = -1;
+			else
+				_c = static_cast<char>(floatNumber);
+			if (floatNumber > 2147483647.0 || floatNumber < -2147483648.0)
+				_converted[1] = -1;
+			else
+				_i = static_cast<int>(floatNumber);
+			_f = floatNumber;
+			_d = static_cast<double>(floatNumber);
+		}
+		else {
+			if (doubleNumber > 255.0 || doubleNumber < 9.0)
+				_converted[0] = -1;
+			else
+				_c = static_cast<char>(doubleNumber);
+			if (doubleNumber > 2147483647.0 || doubleNumber < -2147483648.0)
+				_converted[1] = -1;
+			else
+				_i = static_cast<int>(doubleNumber);
+			_f = static_cast<float>(doubleNumber);
+			_d = doubleNumber;
+		}
 	}
 }
 
