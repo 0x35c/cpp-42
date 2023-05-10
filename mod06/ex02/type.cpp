@@ -6,7 +6,7 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:41:22 by ulayus            #+#    #+#             */
-/*   Updated: 2023/04/05 12:36:59 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:27:28 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	identify(Base& p){
 		(void)b;
 		std::cout << "The type is B" << std::endl;
 	}
-
 	catch (std::exception &bc) {  }
+
 	try {
 		C&	c = dynamic_cast<C&>(p);
 		(void)c;

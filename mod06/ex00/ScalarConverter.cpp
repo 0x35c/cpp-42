@@ -6,13 +6,11 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 10:29:28 by ulayus            #+#    #+#             */
-/*   Updated: 2023/05/09 16:16:14 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:16:08 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include <cstdlib>
-#include <iostream>
 
 int		ScalarConverter::_converted[4] = { 0, 0, 0, 0 };
 char	ScalarConverter::_c = 0; int		ScalarConverter::_i = 0;

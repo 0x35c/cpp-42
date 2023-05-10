@@ -6,13 +6,11 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:25:55 by ulayus            #+#    #+#             */
-/*   Updated: 2023/04/03 18:19:48 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:26:51 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
-#include <iostream>
 
 Base::~Base(void){
-	std::cout << "Base destructor called" << std::endl;
 }

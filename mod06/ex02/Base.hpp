@@ -6,12 +6,12 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:23:03 by ulayus            #+#    #+#             */
-/*   Updated: 2023/04/03 17:39:53 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:25:15 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-#define BASE_HPP
+#ifndef BASE_HPP_
+#define BASE_HPP_
 
 class Base {
 	public:

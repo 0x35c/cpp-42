@@ -6,17 +6,17 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 11:28:32 by ulayus            #+#    #+#             */
-/*   Updated: 2023/03/30 11:00:20 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:16:12 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#ifndef SCALARCONVERTER_HPP_
+#define SCALARCONVERTER_HPP_
 
 #include <string>
+#include <cstdlib>
+#include <iostream>
 #include <cmath>
-#include <stdint.h>
-#include <stdlib.h>
 
 enum specialNumbers { nINF = 2, pINF, sNAN, nINFF, pINFF, sNANF };
 

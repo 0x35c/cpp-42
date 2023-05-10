@@ -6,14 +6,14 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:47:58 by ulayus            #+#    #+#             */
-/*   Updated: 2023/05/09 16:15:37 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:17:03 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
 int	isChar(std::string var){
-	if (isdigit(var[0]))
+	if (isdigit(var[0]) || var.length() > 1)
 		return (0);
 	return (1);
 }

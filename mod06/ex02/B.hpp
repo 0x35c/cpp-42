@@ -6,12 +6,12 @@
 /*   By: ulayus <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:23:03 by ulayus            #+#    #+#             */
-/*   Updated: 2023/04/03 17:40:44 by ulayus           ###   ########.fr       */
+/*   Updated: 2023/05/10 16:25:02 by ulayus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef B_HPP
-#define B_HPP
+#ifndef B_HPP_
+#define B_HPP_
 
 #include "Base.hpp"
 
