@@ -24,15 +24,18 @@ class Array {
 		}
 
 		Array& operator= (const Array& other){
+			delete []_array;
+			_array = new T[other._size]();
 			_size = other._size;
 			for (unsigned int i = 0; i < _size; i++) {
 				_array[i] = other._array[i];	
 			}
+			return (*this);
 		}
 
 		T& operator[] (unsigned int index){
-			if (index >= _size)
-				throw std::out_of_range("Error: index out_of_range");
+			if (index >= _size || index < 0)
+				throw std::out_of_range("error: index out_of_range");
 			return (_array[index]);
 		}
 
@@ -46,8 +49,8 @@ class Array {
 		}
 		
 	private:
-		T*				_array;
-		unsigned int	_size;
+		unsigned int _size;
+		T* _array;
 };
 
 #endif
