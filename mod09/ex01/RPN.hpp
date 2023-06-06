@@ -1,11 +1,8 @@
-#ifndef RPN_HPP_
-#define RPN_HPP_
+#pragma once
 
 #include <string>
 #include <stack>
 #include <iostream>
 #include <cstdlib>
 
-unsigned int calculateRPN(const char* number);
-
-#endif
+int calculateRPN(const char* number);

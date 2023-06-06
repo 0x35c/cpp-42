@@ -1,14 +1,35 @@
 #include "RPN.hpp"
 
-/* bool ft_isdigit(const std::string& str) { */
-/* 	return (str.find_first_not_of("0123456789") == std::string::npos); */
-/* } */
+static bool isOperator(char c);
+static void checkOperators(std::string input);
+static int processOperation(int nb1, int nb2, char op);
+
+static void checkOperators(std::string input) {
+	int operators = 0;
+	bool op = false;
+	int numbers = 0;
+
+	for (size_t i = 0; i < input.length(); ++i) {
+		if (isOperator(input[i])) {
+			if (op == false)
+				throw (std::invalid_argument("Error: wrong number of operators/numbers\n"));
+			op = false;
+			++operators;
+		}
+		else if (std::isdigit(input[i])) {
+			op = true;
+			++numbers;
+		}
+	}
+	if (numbers != operators + 1)
+		throw (std::invalid_argument("Error: wrong number of operators/numbers\n"));
+}
 
 static bool isOperator(char c) {
 	return (c == '*' || c == '+' || c == '/' || c == '-');
 }
 
-static unsigned int processOperation(unsigned int nb1, unsigned int nb2, char op) {
+static int processOperation(int nb1, int nb2, char op) {
 	switch (op) {
 		case '*':
 			return (nb1 * nb2);
@@ -33,12 +54,13 @@ static unsigned int processOperation(unsigned int nb1, unsigned int nb2, char op
 	}
 }
 
-unsigned int calculateRPN(const char* number) {
+int calculateRPN(const char* number) {
 	std::stack<unsigned int> numberStack;
 	unsigned int nb1;
 	unsigned int nb2;
-	unsigned int result;
+	int result;
 	
+	checkOperators(number);
 	for (int i = 0; number[i]; i++) {
 
 		if (std::isdigit(number[i]))
@@ -53,10 +75,8 @@ unsigned int calculateRPN(const char* number) {
 			if (number[i + 1])
 				i++;
 		}
-		else if (number[i] != ' ') {
-			std::cerr << "Error: invalid character" << std::endl;
-			std::exit(EXIT_FAILURE);
-		}
+		else if (number[i] != ' ')
+			throw (std::invalid_argument("Error: invalid character\n"));
 	}
 	result = numberStack.top();
 	return (result);

@@ -11,10 +11,16 @@ int main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 
-	unsigned int result;
+	int result;
 
-	result = calculateRPN(av[1]);
-	std::cout << result << std::endl;
+	try {
+		result = calculateRPN(av[1]);
+		std::cout << result << std::endl;
+	}
+	catch (std::invalid_argument& e) {
+		std::cerr << e.what();
+		return (EXIT_FAILURE);
+	}
 
 	return (EXIT_SUCCESS);
 }

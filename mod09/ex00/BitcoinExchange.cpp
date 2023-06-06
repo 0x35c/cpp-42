@@ -4,14 +4,13 @@
 // Utils function to get a part of a string with its
 // following index and a defined separator, it will
 // then return the string corresponding to it.
-std::string getToken(const std::string& str, char sep, int pos){
+std::string getToken(const std::string& str, char sep, int pos) {
 	std::string token;
 	int			cur_pos;
 
 	cur_pos = 1;
 	for (uint64_t i = 0; i < str.size(); i++) {
-		if (str[i] == sep)	
-		{
+		if (str[i] == sep)	{
 			if (cur_pos == pos)
 				break;
 			token.clear();
@@ -23,8 +22,7 @@ std::string getToken(const std::string& str, char sep, int pos){
 	return (token);
 }
 
-static bool checkDay(int day, int month, int year)
-{
+static bool checkDay(int day, int month, int year) {
 	int	months[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 	if ((year % 4 == 0 && year % 100) || year % 400 == 0)
@@ -34,8 +32,7 @@ static bool checkDay(int day, int month, int year)
 	return (true);
 }
 
-static bool checkDate(std::string sYear, std::string sMonth, std::string sDay)
-{
+static bool checkDate(std::string sYear, std::string sMonth, std::string sDay) {
 	int year = std::atol(sYear.c_str());
 	int month = std::atoi(sMonth.c_str());
 	int day = std::atoi(sDay.c_str());
@@ -49,8 +46,7 @@ static bool checkDate(std::string sYear, std::string sMonth, std::string sDay)
 	return (true);
 }
 
-bool checkFormatKey(const std::string& str)
-{
+bool checkFormatKey(const std::string& str) {
 	std::string year = getToken(str, '-', 1);
 	std::string month = getToken(str, '-', 2);
 	std::string day = getToken(str, '-', 3);
@@ -68,13 +64,12 @@ bool checkFormatKey(const std::string& str)
 	return (true);
 }
 
-bool checkNumber(const std::string& str, bool dotAllowed)
-{
+bool checkNumber(const std::string& str, bool dotAllowed) {
 	bool isDot;
 
 	if (dotAllowed == true)
 		isDot = false;
-	for (size_t i = 0; i < str.size(); i++){
+	for (size_t i = 0; i < str.size(); i++) {
 		if (str[i] == '.' && isDot == false)
 			isDot = true;
 		else if (std::isdigit(str[i]) == false)
@@ -88,16 +83,15 @@ bool checkNumber(const std::string& str, bool dotAllowed)
 // This function will print the date and the value between
 // the database and the input, or the closest lower date 
 // if not found in the database.
-void printDate(map& database, std::string keyValue, std::string keyToken, float value)
-{
+void printDate(map& database, std::string keyValue, std::string keyToken, float value) {
 	map::iterator tmp;
 
-	if ((tmp = database.find(keyToken)) != database.end()){
+	if ((tmp = database.find(keyToken)) != database.end()) {
 		std::cout << keyToken << " => " << keyValue
 		<< " = " << tmp->second * value
 		<< std::endl;
 	}
-	else if ((tmp = database.lower_bound(keyToken)) != database.end()){
+	else if ((tmp = database.lower_bound(keyToken)) != database.end()) {
 		std::cout << keyToken << " => " << keyValue
 		<< " = " << tmp->second * value
 		<< std::endl;

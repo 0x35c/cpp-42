@@ -4,28 +4,26 @@ bool firstLine;
 
 // This function will check the database format 
 // which should be as following: yyyy-mm-dd,value
-static map parseDatabase(std::ifstream& infile)
-{
+static map parseDatabase(std::ifstream& infile) {
 	map database;
-	std::string str;
+	std::string line;
 	std::string keyToken;
 	std::string keyValue;
 
 	firstLine = true;
-	while (std::getline(infile, str))
+	while (std::getline(infile, line))
 	{
-		if (firstLine == true)
-		{
-			if (str != "date | value")
+		if (firstLine == true) {
+			if (line != "date,exchange_rate")
 				throw std::invalid_argument("Missing format at start of file");
 			firstLine = false;
 		}
 		else {
-			keyToken = getToken(str, ',', 1);
-			if (!str.empty() && checkFormatKey(keyToken) == false)
+			keyToken = getToken(line, ',', 1);
+			if (!line.empty() && checkFormatKey(keyToken) == false)
 				throw std::invalid_argument("Error on the format: " + keyToken);
-			keyValue = getToken(str, ',', 2);
-			if (!str.empty() && checkNumber(keyValue, true) == false)
+			keyValue = getToken(line, ',', 2);
+			if (!line.empty() && checkNumber(keyValue, true) == false)
 				throw std::invalid_argument("Error on the format: " + keyValue);
 			database.insert(std::pair<std::string, float>(keyToken, std::atof(keyValue.c_str())));
 		}
@@ -38,8 +36,7 @@ static map parseDatabase(std::ifstream& infile)
 //
 // It will then print the date and its value
 // or the error message corresponding
-static void printInput(std::ifstream& infile, map& database)
-{
+static void printInput(std::ifstream& infile, map& database) {
 	float value;
 	std::string str;
 	std::string keyToken;
