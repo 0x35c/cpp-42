@@ -1,10 +1,9 @@
+#pragma once
+
 #include <string>
 #include <vector>
 
 typedef std::vector<int>::iterator const iterator;
-
-#ifndef SPAN_HPP_
-#define SPAN_HPP_
 
 class Span {
 	public:
@@ -17,7 +16,7 @@ class Span {
 		/*Member functions*/
 		std::vector<int>& getVector(void);
 		void addNumber(int nb);
-		void addMultipleNumber(const std::vector<int>& vector);
+		void addMultipleNumbers(const std::vector<int>& vector);
 		int shortestSpan(void);
 		int longestSpan(void);
 		
@@ -27,5 +26,3 @@ class Span {
 		unsigned int _size;
 		unsigned int _pos;
 };
-
-#endif

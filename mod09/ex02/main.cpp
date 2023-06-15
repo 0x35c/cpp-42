@@ -1,5 +1,6 @@
 #include "PmergeMe.hpp"
 #include <sys/select.h>
+#include <sys/types.h>
 
 int	main(int ac, char **av)
 {
@@ -7,8 +8,8 @@ int	main(int ac, char **av)
 		std::cout << "Error: wrong number of arguments" << std::endl; return (EXIT_FAILURE); }
 	std::vector<u_int32_t> vectorArray;
 	std::deque<u_int32_t> dequeArray;
-	double timeVector;
-	double timeDeque;
+	u_long timeVector;
+	u_long timeDeque;
 	timeval startTime;
 	timeval endTime; 
 

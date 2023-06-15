@@ -6,20 +6,13 @@ static int processOperation(int nb1, int nb2, char op);
 
 static void checkOperators(std::string input) {
 	int operators = 0;
-	bool op = false;
 	int numbers = 0;
 
 	for (size_t i = 0; i < input.length(); ++i) {
-		if (isOperator(input[i])) {
-			if (op == false)
-				throw (std::invalid_argument("Error: wrong number of operators/numbers\n"));
-			op = false;
+		if (isOperator(input[i]))
 			++operators;
-		}
-		else if (std::isdigit(input[i])) {
-			op = true;
+		else if (std::isdigit(input[i]))
 			++numbers;
-		}
 	}
 	if (numbers != operators + 1)
 		throw (std::invalid_argument("Error: wrong number of operators/numbers\n"));
@@ -64,16 +57,16 @@ int calculateRPN(const char* number) {
 	for (int i = 0; number[i]; i++) {
 
 		if (std::isdigit(number[i]))
-			numberStack.push(std::atoi(&(number[i])));
+			numberStack.push(number[i] - '0');
 		else if (isOperator(number[i])) {
+			if (numberStack.size() <= 1)
+				throw(std::invalid_argument("Error: invalid input\n"));
 			nb2 = numberStack.top();
 			numberStack.pop();
 			nb1 = numberStack.top();
 			numberStack.pop();
 			result = processOperation(nb1, nb2, number[i]);
 			numberStack.push(result);
-			if (number[i + 1])
-				i++;
 		}
 		else if (number[i] != ' ')
 			throw (std::invalid_argument("Error: invalid character\n"));

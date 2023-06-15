@@ -17,7 +17,7 @@ int	main(void)
 			std::cout << sp.shortestSpan() << std::endl;
 			std::cout << sp.longestSpan() << std::endl;
 
-			sp2.addMultipleNumber(sp.getVector());
+			sp2.addMultipleNumbers(sp.getVector());
 			sp2.addNumber(170);
 			sp2.addNumber(-3);
 

@@ -16,6 +16,8 @@ typedef struct s_date {
 }	t_date;
 
 std::string getToken(const std::string& str, char sep, int pos);
+map parseDatabase(std::ifstream& infile);
+void printInput(std::ifstream& infile, map& database);
 bool checkFormatKey(const std::string& str);
 bool checkNumber(const std::string& str, bool dotAllowed);
 void printDate(map& database, std::string keyValue, std::string keyToken, float value);
